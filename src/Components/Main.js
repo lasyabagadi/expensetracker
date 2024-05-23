@@ -11,10 +11,12 @@ export default function Main() {
     const parsedAmount = parseFloat(amount);
     if (isNaN(parsedAmount) || parsedAmount<=0){
       alert('Please enter a valid amount');
+      return;
     }
 
-    setBalance(
-      (prevBalance) => prevBalance + parsedAmount);
+    const newbalance = balance + parsedAmount;
+
+    setBalance(newbalance)
 
     setTransactions(
       (prevTransactions) => [
@@ -22,6 +24,11 @@ export default function Main() {
         {description,amount:parsedAmount},
       ]
     );
+
+    if (newbalance>1000){
+      alert('Limit crossed');
+    }
+   
 
     setDescription('');
     setAmount('');
